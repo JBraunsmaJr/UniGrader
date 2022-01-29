@@ -1,6 +1,5 @@
 ﻿using System.Management.Automation;
 using Docker.DotNet;
-using Docker.DotNet.Models;
 using Newtonsoft.Json;
 using UniGrader.Builders;
 using UniGrader.Graders;

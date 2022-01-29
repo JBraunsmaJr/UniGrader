@@ -1,6 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using Docker.DotNet;
 using UniGrader;
 using UniGrader.Models;
 
@@ -21,4 +20,4 @@ var platform = app.Services.GetRequiredService<Platform>();
 await Util.SetExecutionPolicy(true);
 await platform.Run();
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine("Grading Complete...");
