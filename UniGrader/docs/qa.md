@@ -50,14 +50,17 @@ When using the Q/A framework you are required to provide an answer key.
 
 ## Output
 **Note**: the grade is a percentage value between 0-1
+Total points indicates total possible points
+
 ```json
 {
-  "team_id": {
-    "grade": "0.xx",
-    "wrong": {
+  "unique_name": {
+    "Grade": "0.xx",
+    "Wrong": {
       "questionID": "their answer"
     },
-    "points": "x.x"
+    "Points": "x.x",
+    "TotalPoints": "x.x"
   }
 }
 ```
