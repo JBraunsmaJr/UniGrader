@@ -1,0 +1,64 @@
+﻿@using UniGrader.Shared.Models
+
+<MudPaper Class="pa-4">
+    <MudText Align="Align.Center" Typo="Typo.h4">Common misanswered questions</MudText>
+    <MudChart ChartType="@Type"
+              InputData="@_counts"
+              InputLabels="@_questions"
+              ChartSeries="@_chartSeries"
+              Width="300px"
+              Height="300px"
+              @bind-SelectedIndex="@selectedIndex">
+    </MudChart>
+    @if (selectedIndex >= 0)
+    {
+        <MudText Align="Align.Center" Color="Color.Primary">
+            @_questions[selectedIndex]
+        </MudText>
+
+        <MudText Align="Align.Center" Color="Color.Info">
+            @_counts[selectedIndex]
+        </MudText>
+    }
+
+</MudPaper>
+
+@code {
+
+    [Parameter]
+    public Dictionary<string, GradeResults> Results { get; set; }
+
+    [Parameter]
+    public ChartType Type { get; set; }
+
+    private int selectedIndex = -1;
+
+    private string[] _questions;
+    private double[] _counts;
+    private List<ChartSeries> _chartSeries = new();
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        Dictionary<string, double> incorrect = new();
+        foreach (var entry in Results.Values)
+        {
+            foreach (var pair in entry.Wrong)
+            {
+                if (!incorrect.ContainsKey(pair.Key))
+                    incorrect.Add(pair.Key, 1.0);
+                else
+                    incorrect[pair.Key] += 1.0;
+            }
+        }
+        
+        _questions = incorrect.Keys.ToArray();
+        _counts = incorrect.Values.ToArray();
+        
+        _chartSeries.Add(new()
+        {
+            Name = "Incorrect",
+            Data = _counts
+        });
+    }
+}

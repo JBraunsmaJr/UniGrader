@@ -1,0 +1,64 @@
+@using UniGrader.Shared.Models
+@inherits LayoutComponentBase
+
+<MudThemeProvider @ref="@_mudThemeProvider" @bind-IsDarkMode="@_isDarkMode"/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<CascadingValue Value="GradeResults">
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudText Typo="Typo.h5" Class="ml-3">UniGrader</MudText>
+        <MudSpacer/>
+        <MudFileUploader/>
+        <InputFile id="fileInput" OnChange="UploadReportFile" hidden multiple />
+        <MudButton HtmlTag="label"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   StartIcon="@Icons.Filled.CloudUpload"
+                   for="fileInput">
+            Upload
+        </MudButton>
+    </MudAppBar>
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+</CascadingValue>
+
+@code {
+private bool _isDarkMode;
+private MudThemeProvider _mudThemeProvider;
+[CascadingParameter]
+public Dictionary<string, GradeResults> GradeResults { get; set; } = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _isDarkMode = await _mudThemeProvider.GetSystemPreference();
+            StateHasChanged();
+        }
+    }
+
+    private async Task UploadReportFile(InputFileChangeEventArgs obj)
+    {
+        if (obj.FileCount == 1)
+        {
+            var buffer = new byte[obj.File.Size];
+            await obj.File.OpenReadStream().ReadAsync(buffer);
+            await using var stream = new MemoryStream();
+            await stream.WriteAsync(buffer);
+            await stream.FlushAsync();
+            stream.Position = 0;
+            using var reader = new StreamReader(stream);
+            var jsonContent = await reader.ReadToEndAsync();
+
+            if (jsonContent is null)
+                return;
+            
+            GradeResults = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, GradeResults>>(jsonContent);
+        }
+    }
+
+}

@@ -1,4 +1,4 @@
-﻿namespace UniGrader.Models;
+﻿namespace UniGrader.Shared.Models;
 
 public class GradeResults
 {
@@ -6,5 +6,5 @@ public class GradeResults
     
     public double Grade => Points / TotalPoints;
     public double Points { get; set; }
-    public double TotalPoints { get; internal set; }
+    public double TotalPoints { get; set; }
 }

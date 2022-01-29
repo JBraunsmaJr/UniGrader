@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniGrader.Dashboard", "UniGrader.Dashboard\UniGrader.Dashboard.csproj", "{F33296A5-5649-4DE8-A5B5-7EB3D0CF768B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniGrader.Shared", "UniGrader.Shared\UniGrader.Shared.csproj", "{5B5BF7F4-8D87-461A-9AD5-8A96914F9428}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{4C08D983-C985-46DE-867A-29773C7DEB97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C08D983-C985-46DE-867A-29773C7DEB97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C08D983-C985-46DE-867A-29773C7DEB97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F33296A5-5649-4DE8-A5B5-7EB3D0CF768B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F33296A5-5649-4DE8-A5B5-7EB3D0CF768B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F33296A5-5649-4DE8-A5B5-7EB3D0CF768B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F33296A5-5649-4DE8-A5B5-7EB3D0CF768B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B5BF7F4-8D87-461A-9AD5-8A96914F9428}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B5BF7F4-8D87-461A-9AD5-8A96914F9428}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B5BF7F4-8D87-461A-9AD5-8A96914F9428}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B5BF7F4-8D87-461A-9AD5-8A96914F9428}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

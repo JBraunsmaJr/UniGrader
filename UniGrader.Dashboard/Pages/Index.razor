@@ -1,0 +1,20 @@
+﻿@page "/"
+@using UniGrader.Shared.Models
+
+<PageTitle>Dashboard</PageTitle>
+
+<ResultChart Results="@Results" Type="ChartType.Pie"/>
+
+<MudGrid Spacing="3" Class="pa-3">
+    @foreach (var pair in Results.OrderBy(x=>x.Key))
+    {
+        <SubmissionBasic Name="@pair.Key" Item="@pair.Value"/>
+    }
+</MudGrid>
+
+@code {
+
+    [CascadingParameter]
+    public Dictionary<string, GradeResults> Results { get; set; } = new();
+
+}

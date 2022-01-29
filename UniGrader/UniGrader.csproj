@@ -32,4 +32,8 @@
       </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\UniGrader.Shared\UniGrader.Shared.csproj" />
+    </ItemGroup>
+
 </Project>

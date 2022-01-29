@@ -1,4 +1,5 @@
 ﻿using UniGrader.Models;
+using UniGrader.Shared.Models;
 
 namespace UniGrader.Graders;
 

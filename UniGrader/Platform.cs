@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using UniGrader.Builders;
 using UniGrader.Graders;
 using UniGrader.Models;
+using UniGrader.Shared.Models;
 
 namespace UniGrader;
 

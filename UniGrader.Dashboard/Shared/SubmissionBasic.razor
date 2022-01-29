@@ -1,0 +1,52 @@
+﻿@using UniGrader.Shared.Models
+
+<MudCard Square="true" Elevation="3" Outlined="true" Class="mt-3 mr-3">
+    <MudCardHeader>
+        @Name
+    </MudCardHeader>
+    
+    <MudCardContent>
+        @{
+            var color = Util.GetLetterColorClass(Item.Grade);
+            var letter = Util.GetLetterGrade(Item.Grade);
+            string grade = (Item.Grade * 100).ToString("0.00");
+            
+            <MudPaper Class="pa-4" Style="background-color: #37474F">
+                <MudGrid>
+                    <MudText Class="pl-3" Color="@color">@letter&nbsp;&nbsp;(@grade%)</MudText>
+                    <MudSpacer/>
+                    <MudText Class="pr-3">
+                        (@Item.Points/@Item.TotalPoints)
+                    </MudText>
+                </MudGrid>
+            </MudPaper>
+        }
+        @if (Item.Wrong.Any())
+        {
+            <MudTable Virtualize="true" Striped="true"
+                      Class="mt-3" Items="@Item.Wrong" Breakpoint="Breakpoint.Sm">
+                <HeaderContent>
+                    <MudTh>Question</MudTh>
+                    <MudTh>Their Response</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="Question Id">@context.Key</MudTd>
+                    <MudTd DataLabel="Response">@context.Value</MudTd>
+                </RowTemplate>
+            </MudTable>
+        }
+        else
+        {
+            <MudText Class="mt-3" Typo="Typo.body1">All correct</MudText>
+        }
+    </MudCardContent>
+</MudCard>
+
+@code {
+
+    [Parameter]
+    public string Name { get; set; }
+
+    [Parameter]
+    public GradeResults Item { get; set; }
+}
