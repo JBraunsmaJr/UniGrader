@@ -1,6 +1,9 @@
 # UniGrader
 Educational Github-based Grading System which leverages docker technology
 
+When you run the UniGrader application it shall generate a `report.json` file located in the `SubmissionData` directory. You can upload this file at [UniGrader Dashboard](https://jbraunsmajr.github.io/UniGrader/) to view the statistics.
+
+
 ## Requirements
 This framework was designed to run on a system which has docker installed! Also leverages the C# `Net6.0` runtime.
 
