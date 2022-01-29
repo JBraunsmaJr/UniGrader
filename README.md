@@ -26,7 +26,7 @@ Contains information on how the framework shall run
 ```json
 {
   "PlatformConfig": {
-    "Type": "qa",
+    "Type": "QuestionAnswer",
     "BaseSubmissionImage": "base_image_for_testing",
     "OutputExtensions": [ "md", "pdf"],
     "EntryPointArgs": [
