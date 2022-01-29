@@ -1,9 +1,15 @@
 ﻿# Question / Answer Mode
 
 By leveraging the following configuration you can
-create a wide-variety of quiz-like jams!
+create a wide-variety of quiz-like projects!
 
-## key.json
+The current implementation requires the submitted projects output their answers as JSON text to stdout. Whether that's via `print` `Console.WriteLine` `System.out`, etc... This output is then processed! The JSON output must be their
+**FINAL** output 
+
+### TODO
+- Adding support for a project to generate json file instead of outputting to stdout
+
+## answerkey.json
 When using the Q/A framework you are required to provide an answer key.
 
 ### Question Object
