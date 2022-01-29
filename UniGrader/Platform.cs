@@ -112,10 +112,11 @@ public class Platform
                 if (!string.IsNullOrEmpty(stderr))
                     _logger.LogError(stderr);
                 
+                // Processing the project's output
                 if (!string.IsNullOrEmpty(stdout))
                 {
                     var grader = GetGrader(repoLang, repoBasePath);
-
+                    
                     var results = await grader.Run(stdout);
 
                     if (grader.Success)
