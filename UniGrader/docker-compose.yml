@@ -1,0 +1,16 @@
+﻿version: "3.5"
+
+volumes: 
+  unigrader_platform_data:
+    name: "unigrader_platform_data"
+  unigrader_submission_data:
+    name: "unigrader_submission_data"
+
+services: 
+  unigrader:
+    hostname: unigrader
+    volumes:
+      - "./PlatformData:/app/PlatformData"
+      - "./output:/app/output"
+      - "/var/run/docker.sock:/var/run/docker.sock:Z"
+      - unigrader_submission_data:/app/SubmissionData

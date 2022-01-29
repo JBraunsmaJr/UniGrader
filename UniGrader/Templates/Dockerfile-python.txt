@@ -1,0 +1,13 @@
+﻿FROM %IMAGE%:%IMAGE_VERSION%
+
+WORKDIR /app
+
+# install dependencies
+%INSTALL_DEPENDENCIES%
+
+# this is the magic needed for docker-ception
+RUN mkdir -p /app/output
+RUN ln -s /app/SubmissionData /app/output
+
+COPY . .
+CMD [ %ENTRYPOINT_ARGS% ]

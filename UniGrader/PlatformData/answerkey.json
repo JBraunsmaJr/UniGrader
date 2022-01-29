@@ -1,0 +1,24 @@
+﻿{
+  "question 1": {
+    "points": 1,
+    "expected": "ale"
+  },
+  "question 2": {
+    "points": 1,
+    "expected": 60
+  },
+  "question 3": {
+    "points": {"full": 5, "partial": 2},
+    "expected": {
+      "full": {"expected": "sword"},
+      "partial": "ale"
+    }
+  },
+  "question 4": {
+    "points": {"full": 5, "partial": 2},
+    "expected": {
+      "full": {"expected": "ale"},
+      "partial": "sword"
+    }
+  }
+}
