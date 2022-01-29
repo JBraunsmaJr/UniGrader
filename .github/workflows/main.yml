@@ -1,0 +1,43 @@
+name: DeployToGitHubPages
+env:
+  PUBLISH_DIR: bin/Release/net6.0/browser-wasm/publish/
+
+# Controls when the action will run
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Publish app
+      run: dotnet publish -c Release --output ${{ env.PUBLISH_DIR }}
+
+    - name: Rewrite base href
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      with:
+        html_path: ${{ env.PUBLISH_DIR }}/wwwroot/index.html
+        base_href: /UniGrader/
+      
+    - name: Copy index.html to 404.html to serve the same file when a file is not found
+      run: cp ${{ env.PUBLISH_DIR }}/wwwroot/index.html ${{ env.PUBLISH_DIR }}/wwwroot/404.html
+      
+    - name: Add .nojekyll file to tell Github Pages to not treat this as a Jekyll Project. (allow files and folders starting with an underscore)
+      run: touch ${{ env.PUBLISH_DIR }}/wwwroot/.nojekyll
+
+    - name: GitHub Pages
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v1.5.1
+      with:
+        target_branch: gh-pages
+        build_dir: ${{ env.PUBLISH_DIR }}/wwwroot
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
