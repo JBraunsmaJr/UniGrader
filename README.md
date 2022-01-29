@@ -7,7 +7,7 @@ This framework was designed to run on a system which has docker installed! Also 
 If you plan on contributing to this library you will need the `Net6.0` SDK installed.
 
 ## Current Grading Types
-- [Question / Answer](UniGrader/docs/qd.md)
+- [Question / Answer](UniGrader/docs/qa.md)
 
 ## appsettings.json
 Contains information on how the framework shall run 
