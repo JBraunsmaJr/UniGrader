@@ -6,6 +6,10 @@ This framework was designed to run on a system which has docker installed! Also 
 
 If you plan on contributing to this library you will need the `Net6.0` SDK installed.
 
+
+## Notes
+For now, must run the framework as a console application on the host machine. There is more work to be done before docker deployment is ready.
+
 ## Current Grading Types
 - [Question / Answer](UniGrader/docs/qa.md)
 
