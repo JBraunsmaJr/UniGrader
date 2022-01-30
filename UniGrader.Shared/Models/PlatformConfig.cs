@@ -1,4 +1,4 @@
-﻿namespace UniGrader.Models;
+﻿namespace UniGrader.Shared.Models;
 
 public class PlatformConfig
 {

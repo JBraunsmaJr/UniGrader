@@ -2,6 +2,7 @@
 
 using UniGrader;
 using UniGrader.Models;
+using UniGrader.Shared.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

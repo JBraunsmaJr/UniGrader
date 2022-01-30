@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using MatchType = UniGrader.Shared.Models.MatchType;
 
 namespace UniGrader.Models;
 

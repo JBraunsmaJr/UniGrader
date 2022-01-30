@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
 
-namespace UniGrader.Models;
+namespace UniGrader.Shared.Models;
 
 public class Submission
 {

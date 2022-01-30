@@ -154,7 +154,7 @@ public static class Util
         await ExecutePowershell($"Set-ExecutionPolicy {(enabled ? "Unrestricted" : "AllSigned")} LocalMachine");
     }
 
-    public static bool MatchArray(object[]? submittedValue, object[]? array, Models.MatchType matchType)
+    public static bool MatchArray(object[]? submittedValue, object[]? array, Shared.Models.MatchType matchType)
     {
         if (submittedValue is null || array is null)
             return false;
@@ -164,17 +164,17 @@ public static class Util
         
         switch (matchType)
         {
-            case Models.MatchType.Exact:
+            case Shared.Models.MatchType.Exact:
                 for(int i = 0; i < array.Length; i++)
                     if (array[i] != submittedValue[i])
                         return false;
                 return true;
             
-            case Models.MatchType.Any:
+            case Shared.Models.MatchType.Any:
                 var intersect = array.Intersect(submittedValue);
                 return intersect.Count() >= 0;
             
-            case Models.MatchType.All:
+            case Shared.Models.MatchType.All:
                 var allIntersect = array.Intersect(submittedValue);
                 return allIntersect.Count() == array.Length;
             
