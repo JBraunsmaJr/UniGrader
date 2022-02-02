@@ -26,7 +26,12 @@ public static class Util
     /// Path to file templates
     /// </summary>
     internal static string TemplatesPath => Path.Join(BasePath, "Templates");
-    
+
+    /// <summary>
+    /// Path to log output
+    /// </summary>
+    internal static string LogsPath => Path.Join(BasePath, "Logs");
+
     /// <summary>
     /// Regex which will grab the last segment of URL
     /// </summary>
@@ -35,6 +40,8 @@ public static class Util
     internal static bool IsWindows => RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
     internal static bool IsLinux => RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
 
+    public static string AsPercent(double value) => value.ToString("0.000000%");
+    
     /// <summary>
     /// Retrieve the starting point file in a given <paramref name="repoPath"/>
     /// </summary>
@@ -130,6 +137,9 @@ public static class Util
 
     public static async Task DeleteDir(string dirPath)
     {
+        if (!Directory.Exists(dirPath))
+            return;
+        
         foreach (var file in Directory.GetFiles(dirPath))
         {
             File.SetAttributes(file, FileAttributes.Normal);

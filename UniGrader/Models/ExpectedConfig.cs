@@ -19,7 +19,7 @@ public class ExpectedConfig
     /// </summary>
     /// <param name="token"></param>
     /// <returns></returns>
-    private bool IsNumber(JToken token) => token.Type == JTokenType.Float || token.Type == JTokenType.Integer;
+    private bool IsNumber(JToken token) => token.Type is JTokenType.Float or JTokenType.Integer;
     
     /// <summary>
     /// Checks if two types are a number or at least equal to each other
