@@ -2,6 +2,7 @@
 
 using UniGrader;
 using UniGrader.Models;
+using UniGrader.Platforms;
 using UniGrader.Shared.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,10 +15,10 @@ builder.Services.AddLogging();
 PlatformConfig platformConfig = new();
 builder.Configuration.Bind("PlatformConfig", platformConfig);
 builder.Services.AddSingleton(x => platformConfig);
-builder.Services.AddSingleton<Platform>();
+builder.Services.AddSingleton<QaPlatform>();
 
 var app = builder.Build();
-var platform = app.Services.GetRequiredService<Platform>();
+var platform = app.Services.GetRequiredService<QaPlatform>();
 await Util.SetExecutionPolicy(true);
 await platform.Run();
 

@@ -33,6 +33,38 @@ public static class Util
     internal static string LogsPath => Path.Join(BasePath, "Logs");
 
     /// <summary>
+    /// Location where user defines tests on a per-language basis. Each language will be a different subdirectory
+    /// </summary>
+    internal static string UserDefinedTests => Path.Join(PlatformDataPath, "Tests");
+
+    /// <summary>
+    /// Retrieves path to user-defined tests based on <paramref name="language"/>
+    /// </summary>
+    /// <param name="language">Language to get user-defined tests for</param>
+    /// <returns>Directory to user defined tests</returns>
+    /// <exception cref="NotImplementedException">When <paramref name="language"/> is a value not supported by this application</exception>
+    /// <exception cref="DirectoryNotFoundException">When user does not have any tests, or properly named structure at <see cref="UserDefinedTests"/> path</exception>
+    internal static string GetUserDefinedTestsFor(Language language)
+    {
+        string folderName = language switch
+        {
+            Language.Cplusplus => "C++",
+            Language.CSharp => "C#",
+            Language.Java => "Java",
+            Language.Python => "Python",
+            Language.NodeJs => "Node",
+            _ => throw new NotImplementedException(language.ToString())
+        };
+
+        string path = Path.Join(UserDefinedTests, folderName);
+
+        if (!Directory.Exists(path))
+            throw new DirectoryNotFoundException($"Unable to locate tests for '{language.ToString()}");
+
+        return path;
+    }
+    
+    /// <summary>
     /// Regex which will grab the last segment of URL
     /// </summary>
     internal static Regex LastSegmentOfUrlRegex = new("[^/]+(?=/$|$)");
